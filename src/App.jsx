@@ -4,27 +4,44 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Container, Nav, NavDropdown, Card } from 'react-bootstrap';
 
 import Header from './components/common/Header';
-import Main from './pages/MainPage'
+import MainPage from './pages/MainPage'
 import ProductDetail from './components/product/ProductDetail';
+import Page404 from './pages/error/404'
+import Test from './pages/Test'
+import Data from './utils/data.js';
 
-import { Link, Route, Switch } from 'react-router-dom'
+import { Link, Routes, Route } from 'react-router-dom'
 
 function App() {
   
+  let [shoes, setShoes] = useState(Data);
+
   return (
     <div className="App">
-          <Header/>
-          <Route exact path="/">
-            <Main/>
-          </Route>
+      <Header/>
+      <Routes>
+        <Route path="*" element={<Page404/>}/>
+        <Route path="/" element={<MainPage/>}/>
+        {/* nested routes */}
+        <Route path="/detail/:id" element={<ProductDetail shoes={shoes} />}/>
 
-          <Route path="/detail">
-            <ProductDetail/>
-          </Route>
+        <Route path="/event" element={<Test/>}>
+          <Route path="one" element={
+            <div>
+              <h4>오늘의 이벤트</h4>
+              <p>첫 주문시 서비스</p>  
+            </div>
+          }/>
+          <Route path="two" element={
+            <div>
+              <h4>오늘의 이벤트</h4>
+              <p>생일기념 쿠폰받기</p> 
+            </div>
+          }/>
+        </Route>
 
-          {/* <Router path="/Modal" component={Modal}>
-            <div>component 바로 보여주기</div>
-          </Router> */}
+      </Routes>
+
     </div>
   )
 }
