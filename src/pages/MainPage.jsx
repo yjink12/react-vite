@@ -25,11 +25,7 @@ export default function Main() {
             </Card.Body>
           </Card>
   
-          <div className='container'>
-            <div className='row'>
-              <ProductList shoes={shoes}/>
-            </div>
-          </div>
+          <ProductList shoes={shoes}/>
       </div>
     )
   }

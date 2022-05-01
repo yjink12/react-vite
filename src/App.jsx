@@ -15,6 +15,7 @@ import { Link, Routes, Route } from 'react-router-dom'
 function App() {
   
   let [shoes, setShoes] = useState(Data);
+  let [left, setLeft] = useState([10, 11, 12]);
 
   return (
     <div className="App">
@@ -23,7 +24,7 @@ function App() {
         <Route path="*" element={<Page404/>}/>
         <Route path="/" element={<MainPage/>}/>
         {/* nested routes */}
-        <Route path="/detail/:id" element={<ProductDetail shoes={shoes} />}/>
+        <Route path="/detail/:id" element={<ProductDetail shoes={shoes} left={left} setLeft={setLeft}/>}/>
 
         <Route path="/event" element={<Test/>}>
           <Route path="one" element={
