@@ -5,6 +5,10 @@ import '@/styles/index.css'
 
 import { BrowserRouter } from 'react-router-dom'
 
+import { Provider } from 'react-redux'
+
+import store from './store/index.js'
+
 /** BrowserRouter vs HashRouter
  *  BrowserRouter : react routing setting 필요
  *  HashRouter : http://--------/#/ 
@@ -20,10 +24,12 @@ import { BrowserRouter } from 'react-router-dom'
 // )
 
 ReactDOM.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <BrowserRouter>
+    <Provider store={store}>
       <App />
-    </BrowserRouter>
-  </React.StrictMode>,
+    </Provider>
+    </BrowserRouter>,
+  // </React.StrictMode>,
   document.getElementById('root')
 );

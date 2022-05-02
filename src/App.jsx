@@ -9,9 +9,10 @@ import Data from './lib/utils/data.js';
 import { Routes, Route } from 'react-router-dom'
 
 import MainPage from '@/pages/MainPage.jsx'
-import ProductDetail from '@/components/product/ProductDetail';
+import ProductDetail from '@/pages/product/ProductDetail';
 import Page404 from '@/pages/error/404'
 import Test from '@/pages/Test'
+import Cart from './pages/Cart/Cart';
 
 //Context api 사용 방법2
 export let leftContext = React.createContext();
@@ -30,6 +31,8 @@ function App() {
         <Route path="/" element={<MainPage/>}/>
         {/* nested routes */}
         <Route path="/detail/:id" element={<ProductDetail shoes={shoes} left={left} setLeft={setLeft}/>}/>
+
+        <Route path="/cart" element={<Cart/>}/>
 
         <Route path="/event" element={<Test/>}>
           <Route path="one" element={
