@@ -1,13 +1,15 @@
-import React, {useState} from "react"
+import React, {useContext, useState} from "react"
 import axios from 'axios'
-import axiosConfig from '@/api/index.js'
+import axiosConfig from '@/lib/api/index.js'
 import Loading from '@/components/common/Loading.jsx'
+import { leftContext } from "../../App"
 
 export default function ProductList(props) {
 
     let [shoes, setShoes] = useState(props.shoes);
     let [count, setCount] = useState(2);
     let [load, setLoad] = useState(false);
+    let left = useContext(leftContext);
 
     async function ShoesList(){
       //로딩중 UI
@@ -43,6 +45,7 @@ export default function ProductList(props) {
                   <h4>{s.title}</h4>
                   <p>{s.content}</p>
                   <p>{s.price}</p>
+                  <p>{left}</p>
                 </div>
               )
             })

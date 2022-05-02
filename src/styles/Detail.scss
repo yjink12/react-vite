@@ -20,6 +20,10 @@ $mainColor : #ff0000;
     @extend .my-alert;
     background: #ffe591;
 }
+.my-alert-red {
+    @extend .my-alert;
+    background: crimson;
+}
 .my-alert p{
     margin-bottom: 0;
 }

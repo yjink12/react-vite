@@ -1,12 +1,11 @@
 import React, {useState} from 'react'
-import Data from '../utils/data.js';
+import Data from '../lib/utils/data.js';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card } from 'react-bootstrap';
 
 import ProductList from '../components/product/ProductList'
 
-export default function Main() {
+export default function Main(props) {
   
     let [shoes, setShoes] = useState(Data);
 
@@ -25,7 +24,7 @@ export default function Main() {
             </Card.Body>
           </Card>
   
-          <ProductList shoes={shoes}/>
+          <ProductList shoes={shoes} left={props.left}/>
       </div>
     )
   }

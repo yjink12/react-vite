@@ -1,11 +1,3 @@
-import React, { useState } from 'react'
-import '@/styles/App.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-import Header from './components/common/Header';
-//import Router from './routes/index.jsx';
-import Data from './lib/utils/data.js';
-
 import { Routes, Route } from 'react-router-dom'
 
 import MainPage from '@/pages/MainPage.jsx'
@@ -13,23 +5,14 @@ import ProductDetail from '@/components/product/ProductDetail';
 import Page404 from '@/pages/error/404'
 import Test from '@/pages/Test'
 
-//Context api 사용 방법2
-export let leftContext = React.createContext();
+function Router(props) {
 
-function App() {
-  
-  let [shoes, setShoes] = useState(Data);
-  let [left, setLeft] = useState([10, 11, 12]);
-
-  return (
-    <div className="App">
-      <Header/>
-      {/* <Router shoes={shoes} left={left} setLeft={setLeft}/> */}
-      <Routes>
+    return (
+    <Routes>
         <Route path="*" element={<Page404/>}/>
         <Route path="/" element={<MainPage/>}/>
         {/* nested routes */}
-        <Route path="/detail/:id" element={<ProductDetail shoes={shoes} left={left} setLeft={setLeft}/>}/>
+        <Route path="/detail/:id" element={<ProductDetail shoes={props.shoes} left={props.left} setLeft={props.setLeft}/>}/>
 
         <Route path="/event" element={<Test/>}>
           <Route path="one" element={
@@ -46,8 +29,6 @@ function App() {
           }/>
         </Route>
     </Routes>
-    </div>
-  )
+    )
 }
-
-export default App
+export default Router;
