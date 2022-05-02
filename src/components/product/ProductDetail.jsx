@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
+
 import styled from 'styled-components'
 import '@/styles/Detail.scss';
+import { Nav } from 'react-bootstrap';
+import { CSSTransition } from "react-transition-group";
+
 import axios from 'axios'
 import axiosConfig from '@/lib/api/index.js'
 
@@ -25,6 +29,9 @@ export default function ProductDetail(props){
     let [alert, setAlert] = useState(true);
     let [caution, setCaution] = useState(false);
     let [inputData, setInputData] = useState('');
+
+    let [clickTab, setClickTab] = useState(1);
+    let [trans, setTrans] = useState(false);
 
     let childLeft = props.left[id];
     //console.log(childLeft);
@@ -138,7 +145,41 @@ export default function ProductDetail(props){
               <button className="btn btn-danger" onClick={() => { navigate(-1); }}>뒤로가기</button> 
             </div>
           </div>
+          
+          {/* Tab UI 만드는 법
+          1. 몇 번째 버튼 눌렀는지 state에 저장
+          2. state에 따라서 UI 보임/안보임 설정 
+          
+            defaultActiveKey : 기본으로 눌러진 버튼의 eventKey
+          */}
+          <Nav className="mt-5" variant="tabs" defaultActiveKey="link-0">
+            <Nav.Item>
+              <Nav.Link eventKey="link-0" onClick={()=>{ setClickTab(1) }}>Option 1</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="link-1" onClick={()=>{ setClickTab(2) }}>Option 2</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="link-2" onClick={()=>{ setClickTab(3) }}>Option 3</Nav.Link>
+            </Nav.Item>
+          </Nav>
+          <CSSTransition in={trans} classNames="wow" timeout={500}>
+            <TabContent clickTab={clickTab} setTrans={setTrans}/>
+          </CSSTransition>
+
         </leftContext.Provider>
       </div> 
     )
   }
+
+function TabContent(props){
+
+  //Tab 내용이 등장하거나 update될 때 true
+  useEffect(()=>{
+    props.setTrans(true);
+  });
+
+  return(
+    <div>{props.clickTab}번째 내용입니다.....</div>
+  )
+}

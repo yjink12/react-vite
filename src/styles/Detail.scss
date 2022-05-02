@@ -2,6 +2,17 @@
 
 $mainColor : #ff0000;
 
+// transition
+.wow-enter {
+    //애니메이션 시작할 때 적용할 css
+    opacity: 0;
+}
+.wow-enter-active {
+    //애니메이션 동작할 때 적용할 css
+    opacity: 1;
+    transition: all 500ms;
+}
+
 .red {
     color: $mainColor
 }
