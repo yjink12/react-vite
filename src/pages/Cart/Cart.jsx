@@ -8,19 +8,24 @@ function Cart(props) {
             <Table striped bordered hover size="sm">
                 <thead>
                     <tr>
-                        <th>#</th>
                         <th>상품명</th>
                         <th>수량</th>
                         <th>변경</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>{ props.state[0].name }</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
+                    {
+                        props.state.map((s, i)=>{
+                            return (
+                                <tr key={i}>
+                                    <td>{s.name}</td>
+                                    <td>{s.id}</td>
+                                    <td>{s.quan}</td>
+                                    <td><button onClick={()=>{ props.dispatch() }}>+</button></td>
+                                </tr>
+                            )
+                        })
+                    }
                 </tbody>
             </Table>
         </div>
